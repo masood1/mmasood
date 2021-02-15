@@ -1,0 +1,125 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "mmasood",
+  "projects": {
+    "mmasood": {
+      "root": "apps/mmasood",
+      "sourceRoot": "apps/mmasood/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/mmasood",
+            "index": "apps/mmasood/src/index.html",
+            "main": "apps/mmasood/src/main.tsx",
+            "polyfills": "apps/mmasood/src/polyfills.ts",
+            "tsConfig": "apps/mmasood/tsconfig.app.json",
+            "assets": [
+              "apps/mmasood/src/favicon.ico",
+              "apps/mmasood/src/assets"
+            ],
+            "styles": ["apps/mmasood/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/mmasood/src/environments/environment.ts",
+                  "with": "apps/mmasood/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "mmasood:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "mmasood:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/mmasood/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/mmasood"],
+          "options": {
+            "jestConfig": "apps/mmasood/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mmasood-e2e": {
+      "root": "apps/mmasood-e2e",
+      "sourceRoot": "apps/mmasood-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/mmasood-e2e/cypress.json",
+            "tsConfig": "apps/mmasood-e2e/tsconfig.e2e.json",
+            "devServerTarget": "mmasood:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mmasood:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/mmasood-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  }
+}
