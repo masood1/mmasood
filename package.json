@@ -1,7 +1,7 @@
 {
   "name": "mmprofile",
   "version": "0.0.0",
-  "homepage": "./dist/apps/mmasood/",
+  "homepage": "./dist/apps/mmasood",
   "license": "MIT",
   "scripts": {
     "nx": "nx",
