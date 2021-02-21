@@ -6,8 +6,8 @@
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
-    "build": "nx build",
-    "prod":"nx run mmasood:build:production",
+    "build2": "nx build",
+    "build":"nx build mmasood --prod  --baseHref=\"./dist/apps/mmasood/\"",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
